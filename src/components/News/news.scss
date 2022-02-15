@@ -1,0 +1,42 @@
+.news {
+    width: 100%;
+
+    .search {
+        position: relative;
+        display: flex;
+
+        &__input {
+            width: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+            padding: 0.5rem 0.5rem 0.5rem (1.625rem + 1rem);
+            font-size: 1rem;
+            box-sizing: border-box;
+            outline-color: transparent;
+
+            margin: 1rem 0;
+            transition: outline-color 0.5s ease-out;
+
+            &:focus,
+            &:active {
+                outline-color: rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        &__icon {
+            position: absolute;
+            left: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1.625rem;
+        }
+    }
+
+    &__list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}
