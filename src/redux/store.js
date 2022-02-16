@@ -1,34 +1,14 @@
-import { createStore } from 'redux'
+import { createStore, combineReducers } from 'redux'
+import userReducer from './reducers/user'
+import newsReducer from './reducers/news'
 
-const initialState = {
-    user: {
-        id: 0,
-        login: 'guest',
-        pass: null,
-        role: 'guest',
-    },
-}
-
-const users = (state = initialState, action) => {
-    if (action.type === 'ADD_USER') {
-        return {
-            ...state,
-            user: action.payload,
-        }
-    }
-
-    if (action.type === 'REMOVE_USER') {
-        return {
-            ...state,
-            user: action.payload,
-        }
-    }
-
-    return { ...state }
-}
+const rootReducer = combineReducers({
+    user: userReducer,
+    news: newsReducer,
+})
 
 const store = createStore(
-    users,
+    rootReducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 

@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import { signIn } from '../../services/auth.service'
 import { useDispatch } from 'react-redux'
-import { addUser } from '../../redux/actions/user'
+import { setUser } from '../../redux/actions/user'
 
-import fakeAuth from '../../utils/fakeAuth'
+// import fakeAuth from '../../utils/fakeAuth'
 
 import './authModal.scss'
 
@@ -22,10 +23,18 @@ function AuthModal({ hideModal }) {
     }
 
     const signInHandleClick = () => {
-        const user = fakeAuth(login, password)
-        dispatch(addUser(user))
-        if (user.role === 'guest') setError(true)
-        user.role !== 'guest' && hideModal()
+        if (login.length > 0 && password.length > 0) {
+            const user = signIn(login, password)
+
+            if (user.role !== '') {
+                dispatch(setUser({ login: user.login, role: user.role }))
+                hideModal()
+            } else {
+                setError(true)
+            }
+        } else {
+            setError(true)
+        }
     }
 
     return (

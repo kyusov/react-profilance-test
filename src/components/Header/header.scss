@@ -9,6 +9,12 @@
         font-weight: 500;
     }
 
+    &__link:nth-child(2) {
+        border-radius: 10px;
+        border: 2px solid orange;
+        padding: 0.5rem 1.5rem;
+    }
+
     &__button {
         padding: 0.5rem 1.5rem;
         border-radius: 10px;
@@ -37,6 +43,15 @@
         &:visited,
         &:active {
             color: #282828;
+        }
+    }
+
+    @media (max-width: 425px) {
+        flex-direction: column;
+
+        &__link,
+        &__button {
+            margin-top: 1rem;
         }
     }
 }

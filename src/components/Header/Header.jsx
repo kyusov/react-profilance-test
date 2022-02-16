@@ -3,14 +3,16 @@ import logo from '../../assets/logo.svg'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeUser } from '../../redux/actions/user'
+import { signOut } from '../../services/auth.service'
 
 function Header({ showModal }) {
     const dispatch = useDispatch()
 
-    const isAuth = useSelector(({ user }) => (user.role === 'guest' ? false : true))
+    const isAuth = useSelector(({ user }) => (user.role !== '' ? true : false))
 
     const modalHandleClick = () => {
         if (isAuth) {
+            signOut()
             dispatch(removeUser())
         } else {
             showModal()

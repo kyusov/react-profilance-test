@@ -1,8 +1,7 @@
 import { useSelector } from 'react-redux'
 
 function HomePage() {
-    const username = useSelector(({ user }) => user.login)
-
+    const username = useSelector(({ user }) => (user.role !== '' ? user.login : 'гость'))
     return (
         <div className="greetings">
             Привет, <span>{username}</span>!
